@@ -14,7 +14,7 @@ public class Plain {
         }
         StringBuilder sb = new StringBuilder();
         var index = 0;
-        var last = diffMap.size() - 2;
+        var last = diffMap.size() - 1;
         for (Map.Entry<String, KeyState> entry: diffMap.entrySet()) {
             index++;
             var key = entry.getKey();
@@ -37,7 +37,7 @@ public class Plain {
                             .append(value3Representation);
                 }
             }
-            if (index != last ) {
+            if (index < last ) {
                 sb.append("\n");
             }
         }
