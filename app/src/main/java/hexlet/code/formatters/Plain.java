@@ -17,8 +17,8 @@ public class Plain {
         for (Map.Entry<String, KeyState> entry: diffMap.entrySet()) {
             index++;
             var key = entry.getKey();
-            var values = entry.getValue().values;
-            var state = entry.getValue().state;
+            var values = entry.getValue().getValues();
+            var state = entry.getValue().getState();
             switch (state) {
                 case "unchanged" -> {
                     continue;

@@ -12,8 +12,8 @@ public class Stylish {
         StringBuilder sb = new StringBuilder("{\n");
         for (Map.Entry<String, KeyState> entry: diffMap.entrySet()) {
             var key = entry.getKey();
-            var values = entry.getValue().values;
-            var state = entry.getValue().state;
+            var values = entry.getValue().getValues();
+            var state = entry.getValue().getState();
             switch (state) {
                 case "unchanged" -> sb.append("    ").append(key).append(": ").append(values[0]).append("\n");
                 case "changed" -> sb.append("  - ").append(key).append(": ").append(values[0]).append("\n")
