@@ -14,7 +14,8 @@ public class App implements Callable<Integer> {
     private String filepath1;
     @Parameters(index = "1", description = "path to second file", paramLabel = "filepath2")
     private String filepath2;
-    @Option(names = {"-f", "--format"}, description = "output format [default: stylish]", paramLabel = "format", defaultValue = "stylish")
+    @Option(names = {"-f", "--format"}, description = "output format [default: stylish]",
+            paramLabel = "format", defaultValue = "stylish")
     private static String format;
     @Override
     public Integer call() throws Exception { // your business logic goes here...

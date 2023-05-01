@@ -5,10 +5,9 @@ import hexlet.code.KeyState;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public class Plain {
-    public static String format(Map<String, KeyState> diffMap) {
+    public static String format(Map<String, KeyState> diffMap) throws Exception {
         if (diffMap.size() == 0) {
             return "";
         }
@@ -36,8 +35,9 @@ public class Plain {
                     sb.append("Property '").append(key).append("' was added with value: ")
                             .append(value3Representation);
                 }
+                default -> throw new Exception("Wrong state");
             }
-            if (index < last ) {
+            if (index < last) {
                 sb.append("\n");
             }
         }

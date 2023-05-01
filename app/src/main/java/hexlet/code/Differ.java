@@ -4,11 +4,14 @@ package hexlet.code;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.Map;
+import java.util.Objects;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 public class Differ {
     private static final Map<String, String> NORMALIZE_EXTENSION =
-            Map.of("yml","yaml", "yaml", "yaml", "json", "json");
+            Map.of("yml", "yaml", "yaml", "yaml", "json", "json");
     public static String generate(String path1, String path2) throws Exception {
         return generate(path1, path2, "stylish");
     }
