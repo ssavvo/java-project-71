@@ -14,6 +14,6 @@ run-help:
 	./build/install/app/bin/app -h
 
 run-file:
-	./build/install/app/bin/app ./json1.json ./json2.json
+	./build/install/app/bin/app ./json1.json ./json2.json -f plain
 
 .PHONY: build

@@ -5,7 +5,7 @@ plugins {
 }
 
 application {
-    mainClass = 'hexlet.code.Differ'
+    mainClass = 'hexlet.code.App'
 }
 
 
@@ -39,6 +39,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter'
     implementation 'info.picocli:picocli:4.7.2'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.2'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.14.2'
 }
 
 

@@ -28,21 +28,44 @@ public class DifferTest {
             }
             if (json1.createNewFile()) {
                 FileWriter writer = new FileWriter(json1);
-                writer.write("{\n"
-                        + "\"host\": \"hexlet.io\","
-                        + "\"timeout\": 50,"
-                        + "\"proxy\": \"123.234.53.22\","
-                        + "\"follow\": false"
-                        + "}");
+                writer.write("""
+                        {
+                          "setting1": "Some value",
+                          "setting2": 200,
+                          "setting3": true,
+                          "key1": "value1",
+                          "numbers1": [1, 2, 3, 4],
+                          "numbers2": [2, 3, 4, 5],
+                          "id": 45,
+                          "default": null,
+                          "checked": false,
+                          "numbers3": [3, 4, 5],
+                          "chars1": ["a", "b", "c"],
+                          "chars2": ["d", "e", "f"]
+                        }""");
                 writer.close();
             }
             if (json2.createNewFile()) {
                 FileWriter writer = new FileWriter(json2);
-                writer.write("{\n"
-                        + "\"timeout\": 20,"
-                        + "\"verbose\": true,"
-                        + "\"host\": \"hexlet.io\""
-                        + "}");
+                writer.write("""
+                        {
+                          "setting1": "Another value",
+                          "setting2": 300,
+                          "setting3": "none",
+                          "key2": "value2",
+                          "numbers1": [1, 2, 3, 4],
+                          "numbers2": [22, 33, 44, 55],
+                          "id": null,
+                          "default": ["value1", "value2"],
+                          "checked": true,
+                          "numbers4": [4, 5, 6],
+                          "chars1": ["a", "b", "c"],
+                          "chars2": false,
+                          "obj1": {
+                            "nestedKey": "value",
+                            "isNested": true
+                          }
+                        }""");
                 writer.close();
             }
         } catch (Exception e) {
@@ -67,12 +90,29 @@ public class DifferTest {
     public void jsonDiff1() {
         String expected = """
                 {
-                  - follow: false
-                    host: hexlet.io
-                  - proxy: 123.234.53.22
-                  - timeout: 50
-                  + timeout: 20
-                  + verbose: true
+                    chars1: [a, b, c]
+                  - chars2: [d, e, f]
+                  + chars2: false
+                  - checked: false
+                  + checked: true
+                  - default: null
+                  + default: [value1, value2]
+                  - id: 45
+                  + id: null
+                  - key1: value1
+                  + key2: value2
+                    numbers1: [1, 2, 3, 4]
+                  - numbers2: [2, 3, 4, 5]
+                  + numbers2: [22, 33, 44, 55]
+                  - numbers3: [3, 4, 5]
+                  + numbers4: [4, 5, 6]
+                  + obj1: {nestedKey=value, isNested=true}
+                  - setting1: Some value
+                  + setting1: Another value
+                  - setting2: 200
+                  + setting2: 300
+                  - setting3: true
+                  + setting3: none
                 }""";
         try {
             assertEquals(expected, Differ.generate(json1.getPath(), json2.getPath()));
@@ -84,12 +124,29 @@ public class DifferTest {
     public void jsonDiff2() {
         String expected = """
                 {
-                  + follow: false
-                    host: hexlet.io
-                  + proxy: 123.234.53.22
-                  - timeout: 20
-                  + timeout: 50
-                  - verbose: true
+                    chars1: [a, b, c]
+                  - chars2: false
+                  + chars2: [d, e, f]
+                  - checked: true
+                  + checked: false
+                  - default: [value1, value2]
+                  + default: null
+                  - id: null
+                  + id: 45
+                  + key1: value1
+                  - key2: value2
+                    numbers1: [1, 2, 3, 4]
+                  - numbers2: [22, 33, 44, 55]
+                  + numbers2: [2, 3, 4, 5]
+                  + numbers3: [3, 4, 5]
+                  - numbers4: [4, 5, 6]
+                  - obj1: {nestedKey=value, isNested=true}
+                  - setting1: Another value
+                  + setting1: Some value
+                  - setting2: 300
+                  + setting2: 200
+                  - setting3: none
+                  + setting3: true
                 }""";
         try {
             assertEquals(expected, Differ.generate(json2.getPath(), json1.getPath()));
