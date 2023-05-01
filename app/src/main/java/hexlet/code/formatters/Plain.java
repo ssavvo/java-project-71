@@ -13,7 +13,10 @@ public class Plain {
             return "";
         }
         StringBuilder sb = new StringBuilder();
+        var index = 0;
+        var last = diffMap.size() - 1;
         for (Map.Entry<String, KeyState> entry: diffMap.entrySet()) {
+            index++;
             var key = entry.getKey();
             var values = entry.getValue().values;
             var state = entry.getValue().state;
@@ -24,16 +27,19 @@ public class Plain {
                     var value1Representation = getRepresentation(values[0]);
                     var value2Representation = getRepresentation(values[1]);
                     sb.append("Property '").append(key).append("' was updated. From ")
-                            .append(value1Representation).append(" to ").append(value2Representation).append("\n");
+                            .append(value1Representation).append(" to ").append(value2Representation);
                     break;
                 case "deleted":
-                    sb.append("Property '").append(key).append("' was removed\n");
+                    sb.append("Property '").append(key).append("' was removed");
                     break;
                 case "added":
                     var value3Representation = getRepresentation(values[0]);
                     sb.append("Property '").append(key).append("' was added with value: ")
-                            .append(value3Representation).append("\n");
+                            .append(value3Representation);
                     break;
+            }
+            if (index != last) {
+                sb.append("\n");
             }
         }
         return sb.toString();
