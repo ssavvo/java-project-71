@@ -6,7 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
-class Differ {
+public class Differ {
     private static final Map<String, String> NORMALIZE_EXTENSION =
             Map.of("yml","yaml", "yaml", "yaml", "json", "json");
     public static String generate(String path1, String path2) throws Exception {
