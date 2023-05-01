@@ -14,7 +14,7 @@ public class Plain {
         }
         StringBuilder sb = new StringBuilder();
         var index = 0;
-        var last = diffMap.size() - 1;
+        var last = diffMap.size() - 2;
         for (Map.Entry<String, KeyState> entry: diffMap.entrySet()) {
             index++;
             var key = entry.getKey();
